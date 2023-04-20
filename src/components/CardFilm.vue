@@ -13,7 +13,7 @@ export default {
         return {
             store
         }
-    }
+    },
 }
 </script>
 
@@ -28,7 +28,8 @@ export default {
 
             <div class="div d-flex align-items-center">
                 <h6 class="mb-2 me-2">Lingua Originale:</h6>
-                <FlagLang :movie="movie" />
+                <FlagLang :movie="movie" v-if="store.show === true" />
+                <p v-else>{{ movie.original_language }}</p>
             </div>
             <p>{{ movie.vote_average }}</p>
         </div>
