@@ -21,24 +21,33 @@ export default {
 
     <div class="col">
         <div class="card">
+            <img class="thumb" :src="store.thumbUrl + movie.poster_path" alt="">
             <h6 class="m-0">Titolo:</h6>
             <p>{{ movie.title }}</p>
             <h6 class="m-0">Titolo Originale:</h6>
             <p>{{ movie.original_title }}</p>
 
-            <div class="div d-flex align-items-center">
+            <div class="lang d-flex align-items-center">
                 <h6 class="mb-2 me-2">Lingua Originale:</h6>
-                <FlagLang :movie="movie" v-if="store.show === true" />
-                <p v-else>{{ movie.original_language }}</p>
+                <FlagLang :movie="movie" />
             </div>
-            <p>{{ movie.vote_average }}</p>
+            <div class="vote">
+                <h6>Voto:</h6>
+                <img src="../../public/BoolFlix.png" alt="" v-for="star in store.stars(movie.vote_average / 2)">
+            </div>
+
         </div>
     </div>
 
 </template>
 
-<style>
+<style lang="scss">
 .card {
     color: black;
+    .thumb {
+        width: 100%;
+        border-top-right-radius: .3rem;
+        border-top-left-radius: .3rem;
+    }
 }
 </style>

@@ -4,22 +4,20 @@ export const store = reactive({
     error: null,
     movies: null,
     userInput: null,
-    lang: null,
-    image: '../../public/img/',
     flags: {
-        es: '../public/img/es.png',
-        it: '../public/img/it.png',
-        en: '../public/img/en.png',
-        ja: '../public/img/ja.png',
+        es: '../../public/es.png',
+        it: '../../public/it.png',
+        en: '../../public/en.png',
+        ja: '../../public/ja.png',
     },
-
-    callApi(input) {
+    thumbUrl: 'https://image.tmdb.org/t/p/original/',
+    callApi(batman) {
         const config = {
             method: 'get',
             url: 'https://api.themoviedb.org/3/search/movie',
             params: {
                 api_key: '81a748c4cf20794badcafd3536296776',
-                query: input
+                query:batman
             }
         }
         axios(config)
@@ -31,8 +29,7 @@ export const store = reactive({
                 console.log(err)
             })
     },
-
-    flagFinder(lang) {
+    search(lang) {
         if (lang === 'en') {
             return store.flags.en
         } else if (lang === 'it') {
@@ -42,5 +39,9 @@ export const store = reactive({
         } else if (lang === 'ja') {
             return store.flags.ja
         }
+    },
+
+    stars(vote) {
+        return Math.ceil(vote)
     }
 })
